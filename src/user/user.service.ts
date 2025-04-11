@@ -1,4 +1,4 @@
-import { Injectable, ConflictException, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, ConflictException, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entity/user.entity';
@@ -48,4 +48,11 @@ export class UserService {
   }
 
   // Add other methods (findAll, findById, update, delete) as needed
+
+  async approveUser(id: number) {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) throw new NotFoundException('User not found');
+    user.approved = true;
+    return this.userRepository.save(user);
+  }
 }

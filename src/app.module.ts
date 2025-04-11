@@ -4,6 +4,9 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/entity/user.entity';
+import { AdminModule } from './admin/admin.module';
+import { Admin } from './admin/admin.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -14,9 +17,9 @@ import { User } from './user/entity/user.entity';
       username: 'root',
       password: 'pass@word1', // update as needed
       database: 'banking',
-      entities: [User],
+      entities: [User,Admin],
       synchronize: true,
-    }),UserModule],
+    }),UserModule,  AdminModule,AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
