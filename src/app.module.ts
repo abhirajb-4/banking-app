@@ -7,6 +7,8 @@ import { User } from './user/entity/user.entity';
 import { AdminModule } from './admin/admin.module';
 import { Admin } from './admin/admin.entity';
 import { AuthModule } from './auth/auth.module';
+import { AccountModule } from './account/account.module';
+import { Account } from './account/entity/account.entity';
 
 @Module({
   imports: [
@@ -17,9 +19,9 @@ import { AuthModule } from './auth/auth.module';
       username: 'root',
       password: 'root', // update as needed
       database: 'banking',
-      entities: [User,Admin],
+      entities: [User,Admin,Account],
       synchronize: true,
-    }),UserModule,  AdminModule,AuthModule],
+    }),UserModule,  AdminModule,AuthModule, AccountModule,],
   controllers: [AppController],
   providers: [AppService],
 })

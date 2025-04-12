@@ -4,9 +4,10 @@ import { Admin } from './admin.entity';
 import { AdminService } from './admin.service';
 import { AdminController } from './admin.controller';
 import { UserModule } from 'src/user/user.module';
+import { AccountModule } from 'src/account/account.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Admin]), UserModule],
+  imports: [TypeOrmModule.forFeature([Admin]), UserModule,AccountModule],
   providers: [AdminService],
   controllers: [AdminController],
   exports: [AdminService],
