@@ -11,6 +11,8 @@ import { AccountModule } from './account/account.module';
 import { Account } from './account/entity/account.entity';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { NetbankingModule } from './netbanking/netbanking.module';
+import { NetBanking } from './netbanking/entity/netbanking.entity';
 
 @Module({
   imports: [
@@ -21,7 +23,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
       username: 'root',
       password: 'pass@word1',
       database: 'banking',
-      entities: [User,Admin,Account],
+      entities: [User,Admin,Account,NetBanking],
       synchronize: true,
     }),UserModule,  AdminModule,AuthModule, AccountModule,
   
@@ -45,6 +47,8 @@ import { MailerModule } from '@nestjs-modules/mailer';
         },
       },
     }),
+  
+    NetbankingModule,
   ],
   controllers: [AppController],
   providers: [AppService],

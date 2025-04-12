@@ -45,6 +45,18 @@ export class AccountService {
     return this.accountRepository.save(account);
   }
 
+  
+  async setNetBankingStatus(accountNumber: string): Promise<Account> {
+    const account = await this.accountRepository.findOne({
+      where: { accountNumber }
+    });
+    if (!account) {
+      throw new ConflictException('Account not found');
+    }
+    account.netBankingStatus = true;
+    return this.accountRepository.save(account);
+  }
+
   //GENERATE ACCOUNT NUMBER
   private generateAccountNumber(): string {
     return Math.floor(100000000000 + Math.random() * 900000000000).toString();
