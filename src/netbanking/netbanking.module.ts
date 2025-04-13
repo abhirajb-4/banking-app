@@ -5,11 +5,16 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { NetBanking } from './entity/netbanking.entity';
 import { Account } from 'src/account/entity/account.entity';
 import { AccountModule } from 'src/account/account.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([NetBanking, Account]), 
-    AccountModule
+    AccountModule,
+    JwtModule.register({
+      secret: 'secretKey',
+      signOptions: { expiresIn: '1d' },
+    }),
   ],
   controllers: [NetbankingController],
   providers: [NetbankingService]

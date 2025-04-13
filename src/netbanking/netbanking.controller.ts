@@ -1,6 +1,9 @@
-import { Body, Controller, Post, BadRequestException } from '@nestjs/common';
+import { Body, Controller, Post, BadRequestException, UseGuards, Get } from '@nestjs/common';
 import { RegisterNetBankingDto } from './dto/register-netbanking.dto';
 import { NetbankingService } from './netbanking.service';
+import { NetbankingLoginDto } from './dto/netbanking-login.dto';
+import { JwtAuthGuard } from 'src/auth/jwt.guard';
+import { RequestResetDto } from './dto/request-reset.dto';
 
 @Controller('netbanking')
 export class NetbankingController {
@@ -16,5 +19,23 @@ export class NetbankingController {
     }
 
     return this.netbankingService.register(dto);
+  }
+
+  @Post('login')
+  login(@Body() dto: NetbankingLoginDto) {
+    return this.netbankingService.login(dto);
+  }
+
+  @Post('request-reset')
+  requestReset(@Body() dto: RequestResetDto) {
+    return this.netbankingService.requestReset(dto);
+
+  }
+
+
+  @UseGuards(JwtAuthGuard)
+  @Get('dashboard')
+  getDashboard() {
+    return { message: 'You are logged in as a NetBanking user' };
   }
 }
