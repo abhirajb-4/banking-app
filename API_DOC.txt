@@ -1,0 +1,66 @@
+//REGISTER USER
+POST http://localhost:3000/users
+{
+  "name": "Abhiraj b",
+  "aadharNo": "123456789012",
+  "panCard": "ABCDE1234F",
+  "fathersName": "Baburaj",
+  "motherName":"Sheena",
+  "dateOfBirth": "1990-05-15",
+  "address": "25, Green Park Colony",
+  "pincode": "110016",
+  "state": "Delhi",
+  "city": "New Delhi",
+  "presentAddress": "25, Green Park Colony",
+  "occupation": "Software Engineer",
+  "sourceOfIncome": "Salary",
+  "grossAnnualIncome": "1200000",
+  "email": "abhi68130@gmail.com",
+  "phoneNo": "9876543210"
+}
+
+//ADMIN LOGIN
+
+POST http://localhost:3000/auth/login
+{
+  "email": "admin@example.com",
+  "password": "admin123"
+}
+
+
+//ADMIN APPROVE
+PATCH http://localhost:3000/admin/approve/1
+ADD JWT
+
+//NETBANK REGISTER
+POST http://localhost:3000/netbanking/register
+{
+  "accountNumber": "204033183732",
+  "email": "abhi68130@gmail.com",
+  "loginPassword": "1234",
+  "confirmLoginPassword": "1234",
+  "transactionPassword": "1234",
+  "confirmTransactionPassword": "1234"
+}
+
+//NETBANK LOGIN 
+POST http://localhost:3000/netbanking/login
+{
+    "accountNumber": "204033183732",
+    "loginPassword": "1234a"
+}
+
+//PASSWORD RESET REQ
+POST http://localhost:3000/netbanking/request-reset
+
+{
+     "accountNumber": "204033183732"
+}
+
+//PASSWORD RESET
+POST http://localhost:3000/netbanking/reset-password
+{
+  "accountNumber": "204033183732",
+  "newPassword": "1234",
+  "confirmPassword": "1234"
+}

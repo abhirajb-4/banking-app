@@ -21,7 +21,7 @@ import { NetBanking } from './netbanking/entity/netbanking.entity';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'pass@word1',
+      password: 'root',
       database: 'banking',
       entities: [User,Admin,Account,NetBanking],
       synchronize: true,

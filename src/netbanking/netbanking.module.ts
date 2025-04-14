@@ -7,6 +7,7 @@ import { Account } from 'src/account/entity/account.entity';
 import { AccountModule } from 'src/account/account.module';
 import { JwtModule } from '@nestjs/jwt';
 
+
 @Module({
   imports: [
     TypeOrmModule.forFeature([NetBanking, Account]), 

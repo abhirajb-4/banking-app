@@ -8,6 +8,9 @@ export class NetBanking {
   @Column({unique:true})
   accountNumber: string;
 
+  @Column({unique:true})
+  email: string;
+
   @Column()
   loginPassword: string;
 

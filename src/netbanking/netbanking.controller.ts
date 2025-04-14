@@ -4,6 +4,7 @@ import { NetbankingService } from './netbanking.service';
 import { NetbankingLoginDto } from './dto/netbanking-login.dto';
 import { JwtAuthGuard } from 'src/auth/jwt.guard';
 import { RequestResetDto } from './dto/request-reset.dto';
+import { ResetPasswordDto } from './dto/reset-password.dto';
 
 @Controller('netbanking')
 export class NetbankingController {
@@ -30,6 +31,10 @@ export class NetbankingController {
   requestReset(@Body() dto: RequestResetDto) {
     return this.netbankingService.requestReset(dto);
 
+  }
+  @Post('reset-password')
+  resetPassword(@Body() dto: ResetPasswordDto) {
+    return this.netbankingService.resetPassword(dto);
   }
 
 

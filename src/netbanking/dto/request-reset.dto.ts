@@ -1,3 +1,3 @@
 export class RequestResetDto {
-    email: string;
+    accountNumber: string;
 }
