@@ -11,6 +11,12 @@ export class NetBanking {
   @Column({unique:true})
   email: string;
 
+  @Column({ type: 'varchar', nullable: true })
+  otp: string | null;
+  
+  @Column({ type: 'timestamp', nullable: true })
+  otpExpiry: Date | null;
+  
   @Column()
   loginPassword: string;
 

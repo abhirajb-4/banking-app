@@ -96,7 +96,14 @@ export class NetbankingService {
     const netBanking = await this.netRepo.findOne({ where: { accountNumber: dto.accountNumber } });
     if (!netBanking) throw new NotFoundException('Account not found');
 
+    const otp = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit OTP
+    const expiry = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+  
+    netBanking.otp = otp;
+    netBanking.otpExpiry = expiry;
+    await this.netRepo.save(netBanking);
     return await this.mailService.sendPasswordResetLink(
+      otp,
       netBanking.email,
       netBanking.accountNumber,
     );
@@ -104,12 +111,21 @@ export class NetbankingService {
   }
 
   async resetPassword(dto: ResetPasswordDto) {
-    if (dto.newPassword !== dto.confirmPassword)
-      throw new BadRequestException('Passwords do not match');
 
     const user = await this.netRepo.findOne({ where: { accountNumber: dto.accountNumber } });
     if (!user) throw new NotFoundException('User not found');
 
+    if (!user.otp || user.otp !== dto.otp || !user.otpExpiry || user.otpExpiry < new Date()) {
+      throw new BadRequestException('Invalid or expired OTP');
+    }
+    
+  
+    if (dto.newPassword !== dto.confirmPassword)
+      throw new BadRequestException('Passwords do not match');
+
+    user.incorretLoginAttempts = 0;
+    user.otp = null;
+    user.otpExpiry = null;
     user.loginPassword = await bcrypt.hash(dto.newPassword, 10);
     await this.netRepo.save(user);
 

@@ -20,13 +20,13 @@ export class MailService {
     });
   }
 
-  async sendPasswordResetLink(email:string, accountNumber:string){
+  async sendPasswordResetLink(otp:string,email:string, accountNumber:string){
     await this.mailerService.sendMail({
       to: email,
       subject: 'Password Reset',
-      html: `Hello, use this link to reset your password: http://localhost:3000/reset?email=${email}`,
-
+      html: `Hello, Your otp is ${otp}`,
     });
+    return "Otp sent"
 
   }
 }

@@ -60,7 +60,8 @@ POST http://localhost:3000/netbanking/request-reset
 //PASSWORD RESET
 POST http://localhost:3000/netbanking/reset-password
 {
-  "accountNumber": "204033183732",
+  "accountNumber": "574517807359",
+  "otp":"970483",
   "newPassword": "1234",
   "confirmPassword": "1234"
 }
