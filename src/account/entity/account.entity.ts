@@ -24,6 +24,6 @@ export class Account {
   @Column({ default: 0.0 })
   balance: number;
 
-  @Column({ default: false })
-  netBankingStatus: boolean;
+  // @Column({ default: false })
+  // netBankingStatus: boolean;
 }

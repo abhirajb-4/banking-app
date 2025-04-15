@@ -13,6 +13,7 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
 import { MailerModule } from '@nestjs-modules/mailer';
 import { NetbankingModule } from './netbanking/netbanking.module';
 import { NetBanking } from './netbanking/entity/netbanking.entity';
+import { PayeeModule } from './payee/payee.module';
 
 @Module({
   imports: [
@@ -49,6 +50,8 @@ import { NetBanking } from './netbanking/entity/netbanking.entity';
     }),
   
     NetbankingModule,
+  
+    PayeeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

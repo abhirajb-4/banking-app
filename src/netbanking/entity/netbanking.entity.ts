@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Payee } from '../../payee/entities/payee.entity'
 
 @Entity()
 export class NetBanking {
@@ -25,4 +26,7 @@ export class NetBanking {
 
   @Column({ default: 0 })
   incorretLoginAttempts:number
+  
+  @OneToMany(() => Payee, (payee) => payee.user)
+  beneficiaries: Payee[];
 }
